@@ -1,0 +1,1 @@
+from diffusion_v2.ldm.modules.losses.contperceptual import LPIPSWithDiscriminator

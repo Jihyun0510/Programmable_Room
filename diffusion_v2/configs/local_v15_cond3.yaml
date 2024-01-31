@@ -1,0 +1,107 @@
+model:
+  target: diffusion_v2.models.uni_controlnet.UniControlNet
+  params:
+    linear_start: 0.00085
+    linear_end: 0.0120
+    num_timesteps_cond: 1
+    log_every_t: 200
+    timesteps: 1000
+    first_stage_key: "jpg"
+    cond_stage_key: "txt"
+    image_size: 64
+    channels: 4
+    cond_stage_trainable: false
+    conditioning_key: crossattn
+    monitor: val/loss_simple_ema
+    scale_factor: 0.18215
+    use_ema: False
+    mode: local
+
+    local_control_config:
+      target: diffusion_v2.models.local_adapter.LocalAdapter
+      params:
+        in_channels: 4
+        model_channels: 320
+        local_channels: 9
+        inject_channels: [192, 256, 384, 512]
+        inject_layers: [1, 4, 7, 10]
+        num_res_blocks: 2
+        attention_resolutions: [4, 2, 1]
+        channel_mult: [1, 2, 4, 4]
+        use_checkpoint: True
+        num_heads: 8
+        use_spatial_transformer: True
+        transformer_depth: 1
+        context_dim: 768
+        legacy: False
+
+    unet_config:
+      target: diffusion_v2.models.local_adapter.LocalControlUNetModel
+      params:
+        image_size: 32
+        in_channels: 4
+        model_channels: 320
+        out_channels: 4
+        num_res_blocks: 2
+        attention_resolutions: [4, 2, 1]
+        channel_mult: [1, 2, 4, 4]
+        use_checkpoint: True
+        num_heads: 8
+        use_spatial_transformer: True
+        transformer_depth: 1
+        context_dim: 768
+        legacy: False
+
+    first_stage_config:
+      target: diffusion_v2.ldm.models.autoencoder.AutoencoderKL
+      params:
+        embed_dim: 4
+        monitor: val/rec_loss
+        ddconfig:
+          double_z: true
+          z_channels: 4
+          resolution: 256
+          in_channels: 3
+          out_ch: 3
+          ch: 128
+          ch_mult:
+          - 1
+          - 2
+          - 4
+          - 4
+          num_res_blocks: 2
+          attn_resolutions: []
+          dropout: 0.0
+        lossconfig:
+          target: torch.nn.Identity
+
+    cond_stage_config:
+      target: diffusion_v2.ldm.modules.encoders.modules.FrozenCLIPEmbedder
+
+data:
+  target: diffusion_v2.src.train.dataset.UniDataset
+  params:
+    anno_path: ./diffusion_v2/data/anno_train.txt
+    image_dir: ./diffusion_v2/data/images
+    condition_root: ./diffusion_v2/data/conditions
+    local_type_list: [depth, layout, semantic]
+    global_type_list: []
+    resolution: 512
+    drop_txt_prob: 0.5
+    keep_all_cond_prob: 0.1
+    drop_all_cond_prob: 0.1
+    drop_each_cond_prob: [0.5, 0.5, 0.5]
+
+data_val:
+  target: diffusion_v2.src.train.dataset.UniDataset
+  params:
+    anno_path: ./diffusion_v2/data/anno_val.txt
+    image_dir: ./diffusion_v2/data/images
+    condition_root: ./diffusion_v2/data/conditions
+    local_type_list: [depth, layout, semantic]
+    global_type_list: []
+    resolution: 512
+    drop_txt_prob: 0.5
+    keep_all_cond_prob: 0.1
+    drop_all_cond_prob: 0.1
+    drop_each_cond_prob: [0.5, 0.5, 0.5]
