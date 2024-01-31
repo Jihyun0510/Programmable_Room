@@ -12,7 +12,7 @@ This repo is the official PyTorch implementation of our Programmable-Room paper.
 
 ## Setup
 
-bash
+```bash
 conda env create -f environment/environment.yaml
 conda activate ldm
 
