@@ -6,7 +6,8 @@ We present Programmable-Room, a framework which interactively generates and edit
 
 This repo is the official PyTorch implementation of our Programmable-Room paper.
 
-![Main Image](files/main.png)
+![Main Image](images/main.png)
+
 Programmable-Room interprets user-provided descriptions to create plausible 3D coordinates for room meshes, to generate panorama images for the texture, to construct 3D meshes by integrating the coordinates and panorama texture images, and to arrange furniture, allowing users to specify single or combined actions as needed. 
 Inspired by visual programming (VP), Programmable-Room utilizes a large language model (LLM) to write a python program which is an ordered list of necessary modules for the various tasks given in natural language. 
 
@@ -22,11 +23,11 @@ conda env create -f environment.yaml
 conda activate PR
 ```
 ### Download
-Download the pretrained weights for the texture generation model. Then place it under ```diffusion/ckpt```.
+Download the [pretrained weights](https://drive.google.com/drive/folders/1coLRXAfHgAsiHRhaV5qKzEhjw0nQ-8uX?usp=drive_link) for the texture generation model. Then place it under ```diffusion/ckpt```.
 
 ## Interactive Scene Generation
 
-![Editing Example](files/editing.png)
+![Editing Example](images/editing.png)
 
 To generate a scene, you can simpy run the ```inference.py``` scrips. For example,
 
