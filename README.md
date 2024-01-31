@@ -35,7 +35,21 @@ To generate a scene, you can simpy run the ```inference.py``` scrips. For exampl
 python inference.py --instruction "Generate a bedroom whose area of the floor is equal to 30m^2. The walls, where there are a door and a window, are covered with light green fabric with stripes."
 ```
 
-Then, in the terminal, you can continue inserting additional instructions. The code will stop if you enter "stop".
+Then, in the terminal, you can continue inserting additional instructions. For example,
+
+```bash
+"Remove the ceiling lamp and chair from the room."
+"Replace the desk with a coffee table."
+"Decrease the width of the room by 1.2m."
+"Add an armchair in the room."
+"Cover the room with dark wood to make the room look like an old cottage."
+```
+
+The code will stop if you enter "stop".
+
+```bash
+"stop"
+```
 
 ## Acknowledgements
 This code is built on the codes from the [Stable Diffusion](https://github.com/CompVis/stable-diffusion.git), [ControlNet](https://github.com/lllyasviel/ControlNet.git), [LayoutGPT](https://github.com/weixi-feng/LayoutGPT.git), and [Structured3D](https://github.com/bertjiazheng/Structured3D.git).
