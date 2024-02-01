@@ -23,7 +23,7 @@ conda env create -f environment.yaml
 conda activate PR
 ```
 ### Download
-Download the [pretrained weights](https://drive.google.com/drive/folders/1coLRXAfHgAsiHRhaV5qKzEhjw0nQ-8uX?usp=drive_link) for the texture generation model. Then place it under ```diffusion/ckpt```.
+Download the [pretrained weights]([https://drive.google.com/drive/folders/1coLRXAfHgAsiHRhaV5qKzEhjw0nQ-8uX?usp=drive_link](https://drive.google.com/file/d/1zU6xGu9DK4OKGUVTS65zL45TEX78sbAC/view?usp=sharing)) for the texture generation model. Then place it under ```diffusion/ckpt```.
 
 ## Interactive Scene Generation
 
