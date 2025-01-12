@@ -4,8 +4,8 @@ We present Programmable-Room, a framework which interactively generates and edit
 
 ## Description
 
-This repo is the official PyTorch implementation of our Programmable-Room paper.
-
+This repo is the official repository which contains source code for the IEEE TMM paper [Programmable-Room](https://jihyun0510.github.io/Programmable_Room_Page/).
+This is the official repository that contains source code for the ICCV 2023 paper
 ![Main Image](images/main.png)
 
 Programmable-Room interprets user-provided descriptions to create plausible 3D coordinates for room meshes, to generate panorama images for the texture, to construct 3D meshes by integrating the coordinates and panorama texture images, and to arrange furniture, allowing users to specify single or combined actions as needed. 
